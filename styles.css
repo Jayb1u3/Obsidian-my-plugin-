@@ -6,3 +6,61 @@ available in the app when your plugin is enabled.
 If your plugin does not need CSS, delete this file.
 
 */
+
+
+.adjustable-grid {
+  display: grid; /* Use grid layout for more control */
+  grid-template-columns: repeat(auto-fill, minmax(50px, 1fr)); /* Responsive columns */
+  gap: 4px;
+  align-items: start;
+  border: 1px solid #666;
+  border-radius: 6px;
+  overflow: hidden;
+  padding: 4px;
+  background-color: #f8f8f8;
+}
+
+.grid-column {
+  padding: 8px;
+  min-width: 50px;
+  background-color: #fff;
+  overflow: auto;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out; /* Smooth scaling transition */
+  will-change: transform; /* Optimizes for animations */
+}
+
+.grid-column:hover,
+.grid-column:focus-within { /* Improved accessibility for focus */
+  transform: scale(1.02); /* Slightly scale up on hover/focus */
+  z-index: 1; /* Ensure the column is above others when scaled */
+}
+
+.grid-column-separator {
+  cursor: col-resize;
+  background-color: #333;
+  width: 4px;
+  height: 100%;
+  transition: background-color 0.2s;
+}
+
+.grid-column-separator:hover,
+.grid-column-separator:focus { /* Consistent hover and focus styles */
+  background-color: #555;
+}
+
+/* The resizing cursor effect */
+.is-resizing {
+  cursor: col-resize;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* Responsive adjustments for smaller screens */
+@media screen and (max-width: 600px) {
+  .adjustable-grid {
+      grid-template-columns: repeat(auto-fill, minmax(50px, 100%)); /* Full width columns on small screens */
+  }
+}
+
